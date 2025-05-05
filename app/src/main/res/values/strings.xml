@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">WeatherTaskApp</string>
+    <string name="toggle_theme">Toggle day and night theme</string>
+
+    <string name="new_task_title">New Task</string>
+    <string name="edit_task_title">Edit Task</string>
+    <string name="task_title_label">Title</string>
+    <string name="task_description_label">Description</string>
+    <string name="add_button">Add</string>
+    <string name="update_button">Update</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="empty_fields_error">Title and description cannot be empty.</string>
+    <string name="task_title_formatted">Title: %1$s</string>
+    <string name="task_description_formatted">Description: %1$s</string>
+    <string name="task_completed">✓ Completed</string>
+    <string name="task_pending">⏳</string>
+    <string name="complete_button">Complete</string>
+    <string name="undo_button">Undo</string>
+    <string name="delete_button">Delete</string>
+    <string name="edit_task_content_desc">Edit Task</string>
+    <string name="task_add">Add Task</string>
+    <string name="task_todo_card_title">To-Do</string>
+    <string name="task_completed_card_title">Completed</string>
+
+
+
+    <string name="weather_in">Weather in %1$s</string>
+    <string name="temperature_label">Temperature: %1$s°C</string>
+    <string name="condition_label">Condition: %1$s</string>
+    <string name="sunrise_label">Sunrise</string>
+    <string name="sunset_label">Sunset</string>
+    <string name="weather_icon_description">Weather Icon</string>
+    <string name="close_button">Close</string>
+    <string name="weather_button">Weather</string>
+    <string name="location_access_required">Location access is required to show weather data.</string>
+    <string name="device_location_check">Please enable your device location to be able to see weather data</string>
+    <string name="location_permission_message">Please enable location permission in settings then relaunch the app</string>
+    <string name="location_disabled_message">Please check that your device location is enabled</string>
+    <string name="loading_weather_data">Loading weather data…</string>
+    <string name="error_permission_denied">Location permission not granted</string>
+    <string name="error_location_unavailable">Please enable your device location</string>
+    <string name="error_geocoding_failed">Failed to determine city from location</string>
+    <string name="temperature_data_unavailable">Temperature data not available.</string>
+    <string name="no_weather_data">No weather data.</string>
+
+</resources>
