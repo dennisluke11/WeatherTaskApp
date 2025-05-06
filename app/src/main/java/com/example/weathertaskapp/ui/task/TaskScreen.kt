@@ -11,6 +11,7 @@
     import com.example.weathertaskapp.R
     import com.example.weathertaskapp.data.local.TaskEntity
     import com.example.weathertaskapp.ui.task.components.TaskSection
+    import com.example.weathertaskapp.utils.Dimens
 
     @Composable
     fun TaskScreen(viewModel: TaskViewModel) {
@@ -34,7 +35,7 @@
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
-                    .padding(16.dp)
+                    .padding(Dimens.PaddingMedium)
             ) {
                 TaskSection(
                     title = stringResource(R.string.task_todo_card_title),

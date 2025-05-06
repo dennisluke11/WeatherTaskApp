@@ -12,20 +12,27 @@ import WeatherResponse
 import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.weathertaskapp.data.remote.WeatherRepository
-import com.example.weathertaskapp.ui.weather.WeatherViewModel
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.*
-import org.junit.*
-import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.MockitoAnnotations
-import org.mockito.kotlin.any
 import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.verify
 import junit.framework.TestCase.assertEquals
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.MockitoAnnotations
+import org.mockito.kotlin.any
 import org.mockito.kotlin.eq
+
 class WeatherViewModelTest {
 
     @get:Rule
@@ -127,7 +134,10 @@ class WeatherViewModelTest {
             ),
             current = Current(
                 temp_c = 22.0,
-                condition = Condition(text = "Cloudy", icon = "//cdn.weatherapi.com/weather/64x64/day/119.png")
+                condition = Condition(
+                    text = "Cloudy",
+                    icon = "//cdn.weatherapi.com/weather/64x64/day/119.png"
+                )
             ),
             forecast = Forecast(forecastday = emptyList())
         )

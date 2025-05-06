@@ -40,8 +40,10 @@ fun WeatherCardContent(viewModel: WeatherViewModel) {
                         WeatherCard(
                             temperature = temp,
                             condition = weather.current.condition.text,
-                            sunrise = weather.forecast.forecastday.getOrNull(0)?.astro?.sunrise ?: "N/A",
-                            sunset = weather.forecast.forecastday.getOrNull(0)?.astro?.sunset ?: "N/A",
+                            sunrise = weather.forecast.forecastday.getOrNull(0)?.astro?.sunrise
+                                ?: "N/A",
+                            sunset = weather.forecast.forecastday.getOrNull(0)?.astro?.sunset
+                                ?: "N/A",
                             city = weather.location.name,
                         )
                     } ?: Text(stringResource(R.string.temperature_data_unavailable))

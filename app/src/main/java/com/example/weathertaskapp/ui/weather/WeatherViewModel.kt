@@ -8,12 +8,12 @@ import WeatherResponse
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.weathertaskapp.BuildConfig
 import com.example.weathertaskapp.data.remote.WeatherRepository
+import com.example.weathertaskapp.utils.ThemeToggleHelper
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import com.example.weathertaskapp.BuildConfig
-import com.example.weathertaskapp.utils.ThemeToggleHelper
 
 class WeatherViewModel(
     private val repository: WeatherRepository,
@@ -44,13 +44,21 @@ class WeatherViewModel(
                 updateThemeBasedOnWeather(response)
             } catch (e: Exception) {
                 Log.e("WeatherViewModel", "Error: ${e.message}", e)
+
+                val errorMessage = if (e is retrofit2.HttpException) {
+                    "Oops, something went wrong"
+                } else {
+                    e.message ?: "An unexpected error occurred"
+                }
+
                 _uiState.value = _uiState.value.copy(
-                    errorMessage = e.message,
+                    errorMessage = errorMessage,
                     isLoading = false
                 )
             }
         }
     }
+
 
     fun loadCityFromLocation() {
         viewModelScope.launch {
@@ -75,7 +83,8 @@ class WeatherViewModel(
         val localTime = weatherResponse.location.localtime
 
         if (astro != null) {
-            val isDark = ThemeToggleHelper.shouldUseDarkTheme(astro.sunrise, astro.sunset, localTime)
+            val isDark =
+                ThemeToggleHelper.shouldUseDarkTheme(astro.sunrise, astro.sunset, localTime)
             _uiState.value = _uiState.value.copy(isDarkTheme = isDark)
         } else {
             Log.e("WeatherViewModel", "Astro data is missing, cannot determine dark theme")

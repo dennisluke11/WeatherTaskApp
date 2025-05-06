@@ -10,16 +10,31 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.outlined.WbTwilight
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
@@ -30,6 +45,7 @@ import com.example.weathertaskapp.ui.theme.WeatherTaskAppTheme
 import com.example.weathertaskapp.ui.weather.WeatherCardContent
 import com.example.weathertaskapp.ui.weather.WeatherViewModel
 import com.example.weathertaskapp.ui.weather.componets.WeatherDialogContent
+import com.example.weathertaskapp.utils.Dimens
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MainActivity : ComponentActivity() {
@@ -69,7 +85,12 @@ class MainActivity : ComponentActivity() {
                         Column(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .padding(top = 32.dp, start = 16.dp, end = 16.dp, bottom = 16.dp)
+                                .padding(
+                                    top = Dimens.PaddingLarge,
+                                    start = Dimens.PaddingMedium,
+                                    end = Dimens.PaddingMedium,
+                                    bottom = Dimens.PaddingMedium
+                                )
                         ) {
                             TaskScreen(viewModel = taskViewModel)
                         }
@@ -78,7 +99,11 @@ class MainActivity : ComponentActivity() {
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier
                                 .align(Alignment.TopEnd)
-                                .padding(top = 40.dp, start = 16.dp, end = 16.dp)
+                                .padding(
+                                    top = Dimens.IconButtonTopPadding,
+                                    start = Dimens.PaddingMedium,
+                                    end = Dimens.PaddingMedium
+                                )
                         ) {
                             IconButton(onClick = {
                                 val permissionCheck = ContextCompat.checkSelfPermission(
@@ -107,7 +132,7 @@ class MainActivity : ComponentActivity() {
                             Dialog(onDismissRequest = { showWeatherOverlay = false }) {
                                 Surface(
                                     shape = MaterialTheme.shapes.medium,
-                                    tonalElevation = 8.dp,
+                                    tonalElevation = Dimens.ElevationSmall,
                                     color = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f),
                                     modifier = Modifier
                                         .fillMaxWidth(0.9f)
@@ -115,7 +140,7 @@ class MainActivity : ComponentActivity() {
                                 ) {
                                     Box(
                                         modifier = Modifier
-                                            .padding(16.dp)
+                                            .padding(Dimens.PaddingMedium)
                                             .wrapContentSize()
                                     ) {
                                         Column(modifier = Modifier.wrapContentSize()) {
@@ -123,7 +148,9 @@ class MainActivity : ComponentActivity() {
                                                 modifier = Modifier.fillMaxWidth(),
                                                 contentAlignment = Alignment.TopEnd
                                             ) {
-                                                IconButton(onClick = { showWeatherOverlay = false }) {
+                                                IconButton(onClick = {
+                                                    showWeatherOverlay = false
+                                                }) {
                                                     Icon(
                                                         imageVector = Icons.Default.Close,
                                                         contentDescription = stringResource(R.string.close_button)
@@ -163,7 +190,7 @@ class MainActivity : ComponentActivity() {
                                                     WeatherDialogContent(
                                                         content = {
                                                             Text(stringResource(R.string.location_access_required))
-                                                            Spacer(modifier = Modifier.height(8.dp))
+                                                            Spacer(modifier = Modifier.height(Dimens.PaddingMedium))
                                                             Text(stringResource(R.string.location_permission_message))
                                                         },
                                                         onClose = { showWeatherOverlay = false }
@@ -190,7 +217,8 @@ class MainActivity : ComponentActivity() {
             window.setBackgroundDrawableResource(android.R.color.transparent)
         } else {
             window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar_dark)
-            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
+            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars =
+                false
         }
         WindowCompat.setDecorFitsSystemWindows(window, false)
         enableEdgeToEdge()

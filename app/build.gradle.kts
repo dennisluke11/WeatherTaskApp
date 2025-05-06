@@ -5,7 +5,7 @@ plugins {
     id("kotlin-kapt")
 }
 
-val openWeatherApiKey = "2537af6e5ecc4ad78f5144906250305"
+val openWeatherApiKey = "ADD_YOUR_OWN_KEY"
 
 android {
     namespace = "com.example.weathertaskapp"
