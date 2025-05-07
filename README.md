@@ -44,3 +44,10 @@ Usage
     * The app automatically switches to dark mode based on the sunrise and sunset times of the fetched weather location.
 4. Error Handling:
     * If the app fails to fetch weather data or if location permissions are denied, appropriate error messages will be displayed.
+  
+Screenshots
+Landing page
+![Screenshot_20250507_091826_com_example_weathertaskapp_MainActivity](https://github.com/user-attachments/assets/cd5e7a1f-6cf7-4d01-8a35-6d8f2b12503a)
+
+Weather Details
+![Screenshot_20250507_091927_com_example_weathertaskapp_MainActivity](https://github.com/user-attachments/assets/a78913ca-e40f-4eb6-8caf-c782aaaff08a)
